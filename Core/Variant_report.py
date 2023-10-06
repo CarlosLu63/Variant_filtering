@@ -13,7 +13,7 @@ class Variant_filtering(object):
     
     def main_flow(self, case_id):
 
-        sys.stdout = open(self.wdir + case_id + '_filter_log.txt', 'w')
+        sys.stdout = open(self.result_dir + case_id + '_filter_log.txt', 'w')
         
         os.chdir(self.wdir)
         print(f"START SNV Filtering...\n")
@@ -38,12 +38,13 @@ class Variant_filtering(object):
             wb.create_sheet(item)
             for row in dataframe_to_rows(df, index = False):
                 wb[item].append(row)
-            wb.save(self.wdir + case_id + '_filtered.xlsx')
+            wb.save(self.result_dir + case_id + '_filtered.xlsx')
 
         sys.stdout.close()
 
     def __init__(self):
-        self.wdir = 'C:/Users/Carlos_Lu/Desktop/Main_files/Projects/報告解讀/test_data/'
+        self.wdir = 'D:/WES_LDTS/報告解讀/test_data/'
+        self.result_dir = 'D:/WES_LDTS/報告解讀/Filter_results/'
 
 def main():	 
 	case_id = sys.argv[1]  
