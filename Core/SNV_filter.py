@@ -50,105 +50,33 @@ class SNV_filtering(object):
         return filtered_file
 
     def Variants_filter(self, new_snv):
-        if len(self.filter1(new_snv)) > 0:
-            result = self.filter1(new_snv)
-            print(f"Filter 1")
-            print(f"Remaining {len(result)} variants\nGoing to filter 2\n")    
-            if len(self.filter2(result)) > 0:
-                result = self.filter2(result)
-                print(f"Filter 2")
-                print(f"Remaining {len(result)} variants\nGoing to filter 3\n")      
-                if len(self.filter3(result)) > 0:
-                    result = self.filter3(result)
-                    print(f"Filter 3")
-                    print(f"Remaining {len(result)} variants\nGoing to filter 4\n")
-                    if len(self.filter4(result)) > 0:
-                        result = self.filter4(result)
-                        print(f"Filter 4")
-                        print(f"Remaining {len(result)} variants\nGoing to filter 5\n")
-                        if len(self.filter5(result)) > 0:
-                            result = self.filter5(result)
-                            print(f"Filter 5")
-                            print(f"Remaining {len(result)} variants\nGoing to filter 6\n")
-                            if len(self.filter6(result)) > 0:
-                                result = self.filter6(result)
-                                print(f"Filter 6")
-                                print(f"Remaining {len(result)} variants\nGoing to filter 7\n")
-                                if len(self.filter7(result)) > 0:
-                                    result = self.filter7(result)
-                                    print(f"Filter 7")
-                                    print(f"Remaining {len(result)} variants\nGoing to filter 8\n")
-                                    if len(self.filter8(result)) > 0:
-                                        result = self.filter8(result)
-                                        print(f"Filter 8")
-                                        print(f"Remaining {len(result)} variants\nGoing to filter 9\n")
-                                        if len(self.filter9(result)) > 0:
-                                            result = self.filter9(result)
-                                            print(f"Filter 9")
-                                            print(f"Remaining {len(result)} variants\nGoing to filter 10\n")
-                                            if len(self.filter10(result)) > 0:
-                                                result = self.filter10(result)
-                                                print(f"Filter 10")
-                                                print(f"Remaining {len(result)} variants\nGoing to filter 11\n")
-                                                if len(self.filter11(result)) > 0:
-                                                    result = self.filter11(result)
-                                                    status = "PASS"
-                                                    print(f"Filter 11")
-                                                    print(f"Remaining {len(result)} variants\nFiltering Done!\n")
-                                                else:
-                                                    result = self.filter11(result)
-                                                    status = "PASS"
-                                                    print(f"Filter 11")
-                                                    print(f"Remaining {len(result)} variants\nStop filtering at filter 11")
-                                            else:
-                                                result = self.filter10(result)
-                                                status = "PASS"
-                                                print(f"Filter 10")
-                                                print(f"Remaining {len(result)} variants\nStop filtering at filter 10")
-                                        else:
-                                            result = self.filter9(result)
-                                            status = "PASS"
-                                            print(f"Filter 9")
-                                            print(f"Remaining {len(result)} variants\nStop filtering at filter 9")
-                                    else:
-                                        result = self.filter8(result)
-                                        status = "PASS"
-                                        print(f"Filter 8")
-                                        print(f"Remaining {len(result)} variants\nStop filtering at filter 8")
-                                else:
-                                    result = self.filter7(result)
-                                    status = "PASS"
-                                    print(f"Filter 7")
-                                    print(f"Remaining {len(result)} variants\nStop filtering at filter 7")
-                            else:
-                                result = self.filter6(result)
-                                status = "PASS"
-                                print(f"Filter 6")
-                                print(f"Remaining {len(result)} variants\nStop filtering at filter 6")
-                        else:
-                            result = self.filter5(result)
-                            status = "PASS"
-                            print(f"Filter 5")
-                            print(f"Remaining {len(result)} variants\nStop filtering at filter 5")
-                    else:
-                        result = self.filter4(result)
-                        status = "PASS"
-                        print(f"Filter 4")
-                        print(f"Remaining {len(result)} variants\nStop filtering at filter 4")
-                else:
-                    result = self.filter3(result)
-                    status = "PASS"
-                    print(f"Filter 3")
-                    print(f"Remaining {len(result)} variants\nStop filtering at filter 3")
-            else:
-                result = self.filter2(result)
+        filters = [
+            self.filter1, 
+            self.filter2, 
+            self.filter3, 
+            self.filter4, 
+            self.filter5, 
+            self.filter6, 
+            self.filter7, 
+            self.filter8, 
+            self.filter9,
+            self.filter10,
+            self.filter11
+        ]
+
+        result = new_snv
+
+        for idx, filter_func in enumerate(filters, start=1):
+            filtered_variants = filter_func(result)
+            print(f"Filter {idx}")
+            print(f"Remaining {len(filtered_variants)} variants\n")
+            result = filtered_variants
+            if len(result) == 0:
+                print(f"Stop filtering at filter {idx}")
                 status = "PASS"
-                print(f"Filter 2")
-                print(f"Remaining {len(result)} variants\nStop filtering at filter 2")
+                break
         else:
-            result = self.filter_1(new_snv)
+            print("Filtering Done!\n")
             status = "PASS"
-            print(f"Filter 1")
-            print(f"Remaining {len(result)} variants\nStop filtering at filter 1")
         
         return result, status

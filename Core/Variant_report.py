@@ -13,7 +13,7 @@ class Variant_filtering(object):
     
     def main_flow(self, case_id):
 
-        sys.stdout = open(self.result_dir + case_id + '_filter_log.txt', 'w')
+        #sys.stdout = open(self.result_dir + case_id + '_filter_log.txt', 'w')
         
         os.chdir(self.wdir)
         print(f"START SNV Filtering...\n")
@@ -46,7 +46,7 @@ class Variant_filtering(object):
                 wb[item].append(row)
             wb.save(self.result_dir + case_id + '_filtered.xlsx')
 
-        sys.stdout.close()
+        #sys.stdout.close()
 
     def __init__(self):
         self.wdir = 'D:/WES_LDTS/報告解讀/test_data/'
