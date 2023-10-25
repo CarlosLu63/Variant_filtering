@@ -20,21 +20,27 @@ class Variant_filtering(object):
         print(f"Reading {case_id} raw excel file...\n")
         raw_snv = pd.read_excel(case_id + '.xlsx', sheet_name = 'SNV', skiprows = 1)
         new_snv = raw_snv.replace('.', np.nan)
-        SNV_result, status = SNV_filtering().Variants_filter(new_snv)
+        try:  
+            SNV_result, status = SNV_filtering().Variants_filter(new_snv)
+        except Exception as e:
+             print(e)
         #final_data.to_excel(case_id + "_filtered.xlsx", index = False)
 
         print(f"START INDEL Filtering...\n")
         print(f"Reading {case_id} raw excel file...\n")
         raw_indel = pd.read_excel(case_id + '.xlsx', sheet_name = 'INDEL', skiprows = 1)
         new_indel = raw_indel.replace('.', np.nan)
-        INDEL_result, status = INDEL_filtering().Variants_filter(new_indel)
+        try:
+            INDEL_result, status = INDEL_filtering().Variants_filter(new_indel)
+        except Exception as e:
+             print(e)
         #final_data.to_excel(case_id + "_filtered.xlsx", index = False)
 
-        print(f"Saving results to excel file...\n")
+        #print(f"Saving results to excel file...\n")
         wb = Workbook()
         wb.remove(wb['Sheet'])
         for item, df in zip(("SNV", "INDEL"), (SNV_result, INDEL_result)):
-            print(item)
+            print(f"Saving {item} results to excel file...\n")
             wb.create_sheet(item)
             for row in dataframe_to_rows(df, index = False):
                 wb[item].append(row)
