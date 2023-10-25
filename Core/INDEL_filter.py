@@ -5,7 +5,7 @@ class INDEL_filtering(object):
     def __init__(self):
         pass
     
-    def filter_1(self, file):
+    def filter1(self, file):
         filtered_file = file[(file.QUAL >= 200) & (file.FILTER == 'PASS')]
         return filtered_file
 
@@ -50,8 +50,8 @@ class INDEL_filtering(object):
         return filtered_file
 
     def Variants_filter(self, new_snv):
-        if len(self.filter_1(new_snv)) > 0:
-            result = self.filter_1(new_snv)
+        if len(self.filter1(new_snv)) > 0:
+            result = self.filter1(new_snv)
             print(f"Filter 1")
             print(f"Remaining {len(result)} variants\nGoing to filter 2\n")    
             if len(self.filter2(result)) > 0:
