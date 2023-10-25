@@ -2,11 +2,11 @@ import pandas as pd
 from alive_progress import alive_bar
 import time
 
-class SNV_filtering(object):
+class INDEL_filtering(object):
     
     def __init__(self):
         pass
-
+    
     def filter1(self, file):
         filtered_file = file[(file.QUAL >= 200) & (file.FILTER == 'PASS')]
         return filtered_file
@@ -51,7 +51,7 @@ class SNV_filtering(object):
         filtered_file = file[(file.PolyPhen.str.contains('benign')==False) | (pd.isna(file.PolyPhen))]
         return filtered_file
 
-    def Variants_filter(self, new_snv):
+    def Variants_filter(self, new_indel):
         filters = [
             self.filter1, 
             self.filter2, 
@@ -61,14 +61,12 @@ class SNV_filtering(object):
             self.filter6, 
             self.filter7, 
             self.filter8, 
-            self.filter9,
-            self.filter10,
-            self.filter11
+            self.filter9
         ]
 
-        result = new_snv
-        
-        with alive_bar(len(filters), title = 'SNV Filtering') as bar:
+        result = new_indel
+
+        with alive_bar(len(filters), title = 'INDEL Filtering') as bar:
             for idx, filter_func in enumerate(filters, start=1):
                 filtered_variants = filter_func(result)
                 #print(f"Filter {idx}")
@@ -83,5 +81,5 @@ class SNV_filtering(object):
             else:
                 print("Filtering Done!\n")
                 status = "PASS"
-
+        
         return result, status

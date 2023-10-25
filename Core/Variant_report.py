@@ -4,8 +4,8 @@ import pandas as pd
 import numpy as np
 from openpyxl import Workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
-from SNV_filter import SNV_filtering
-from INDEL_filter import INDEL_filtering
+from New_SNV_filter import SNV_filtering
+from New_INDEL_filter import INDEL_filtering
 
 #wdir = '/share/NGS_Project/1O923090801_woBED/'
 
@@ -49,8 +49,10 @@ class Variant_filtering(object):
         #sys.stdout.close()
 
     def __init__(self):
-        self.wdir = 'D:/WES_LDTS/報告解讀/test_data/'
-        self.result_dir = 'D:/WES_LDTS/報告解讀/Filter_results/'
+        #self.wdir = 'D:/WES_LDTS/報告解讀/test_data/'
+        #self.result_dir = 'D:/WES_LDTS/報告解讀/Filter_results/'
+        self.wdir = 'C:/Users/Carlos_Lu/Desktop/Main_files/Projects/報告解讀/test_data'
+        self.result_dir = 'C:/Users/Carlos_Lu/Desktop/Main_files/Projects/報告解讀/Filter_results/'
 
 def main():	 
 	case_id = sys.argv[1]  
