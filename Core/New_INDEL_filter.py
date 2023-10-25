@@ -66,7 +66,7 @@ class INDEL_filtering(object):
 
         result = new_indel
 
-        with alive_bar(len(filters), title = 'INDEL Filtering') as bar:
+        with alive_bar(len(filters), title = 'INDEL Filtering', bar = 'halloween') as bar:
             for idx, filter_func in enumerate(filters, start=1):
                 filtered_variants = filter_func(result)
                 #print(f"Filter {idx}")

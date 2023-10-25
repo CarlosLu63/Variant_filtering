@@ -68,7 +68,7 @@ class SNV_filtering(object):
 
         result = new_snv
         
-        with alive_bar(len(filters), title = 'SNV Filtering') as bar:
+        with alive_bar(len(filters), title = 'SNV Filtering', bar = 'halloween') as bar:
             for idx, filter_func in enumerate(filters, start=1):
                 filtered_variants = filter_func(result)
                 #print(f"Filter {idx}")
