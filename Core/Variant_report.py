@@ -49,10 +49,10 @@ class Variant_filtering(object):
         #sys.stdout.close()
 
     def __init__(self):
-        #self.wdir = 'D:/WES_LDTS/報告解讀/test_data/'
-        #self.result_dir = 'D:/WES_LDTS/報告解讀/Filter_results/'
-        self.wdir = 'C:/Users/Carlos_Lu/Desktop/Main_files/Projects/報告解讀/test_data'
-        self.result_dir = 'C:/Users/Carlos_Lu/Desktop/Main_files/Projects/報告解讀/Filter_results/'
+        self.wdir = 'D:/WES_LDTS/報告解讀/test_data/'
+        self.result_dir = 'D:/WES_LDTS/報告解讀/Filter_results/'
+        #self.wdir = 'C:/Users/Carlos_Lu/Desktop/Main_files/Projects/報告解讀/test_data'
+        #self.result_dir = 'C:/Users/Carlos_Lu/Desktop/Main_files/Projects/報告解讀/Filter_results/'
 
 def main():	 
 	case_id = sys.argv[1]  
