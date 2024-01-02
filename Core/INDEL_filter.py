@@ -73,8 +73,8 @@ class INDEL_filtering(object):
                 print(f"Stop filtering at filter {idx}")
                 status = "PASS"
                 break
-            else:
-                print("Filtering Done!\n")
-                status = "PASS"
+        else:
+            print("Filtering Done!\n")
+            status = "PASS"
         
-            return result, status
+        return result, status
