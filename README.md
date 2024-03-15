@@ -2,7 +2,7 @@
 Filter variants for WES analysis result
 
 # Usage
-python Variant_report.py 1O922112301_01A (xlsx file)
+python Variant_report.py 1O922112301_01A (in-house WES pipeline raw excel file)
 
 # Variant_report.py module import
 ## Desplay progress bar and filtering info
