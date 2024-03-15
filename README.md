@@ -13,3 +13,4 @@ from New_INDEL_filter import INDEL_filtering
 from SNV_filter import SNV_filtering  
 from INDEL_filter import INDEL_filtering  
 sys.stdout = open(self.result_dir + case_id + '_filter_log.txt', 'w')  
+sys.stdout.close()
